@@ -12,6 +12,10 @@ export class ServerConnectionsService {
     return this.http.get("http://localhost:3000/data").map((res) => res.json() );
   }
 
+  getProfileData(id){
+    return this.http.get('http://localhost:3000/data/' + id + '/').map((res) => res.json() );
+  }
+
   postData(body){
     this.http.post('http://localhost:3000/data/', body).subscribe();
   }

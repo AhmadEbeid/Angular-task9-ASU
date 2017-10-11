@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerConnectionsService } from '../server-connections.service';
 import { Http } from '@angular/http'
-import { ProfileInfo } from '../profile-info'
+//  import { ProfileInfo } from '../profile-info'
 
 @Component({
   selector: 'app-database-info',
@@ -26,6 +26,7 @@ export class DatabaseInfoComponent implements OnInit {
     });
   }
 
+
   refresh(){
     this.server.getData().subscribe((res) => {
       console.log(res)
@@ -33,17 +34,6 @@ export class DatabaseInfoComponent implements OnInit {
         this.profile[i] = res[i];
       }
     });
-  }
-
-  clickMe(id){
-    this.infoFlagClickMe = 1;
-    this.id = id;
-  }
-
-  submitMe(UserInfoJson, id){
-    this.infoFlagClickMe = 0;
-    this.server.updateData(UserInfoJson.value, id);
-    setTimeout(()=>{ this.refresh() }, 1)
   }
 
 }

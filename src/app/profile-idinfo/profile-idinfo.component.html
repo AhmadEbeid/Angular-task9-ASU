@@ -1,3 +1,134 @@
-<p>
-  profile-idinfo works!
-</p>
+<div class="container all" *ngIf="profile">
+    <form id="InputForm" (ngSubmit)="submitMe(f)" #f="ngForm">
+        <div class="form-group">
+            <label class="labels " for="Name">Name:</label>
+            <input type="text" id="Name" required pattern="[a-zA-Z ]*" ngModel="{{profile.Name}}" name="Name" class="form-control" #Name="ngModel">
+
+            <div *ngIf="Name.errors && (Name.dirty || Name.touched)" class="alert alert-info">
+                <div [hidden]="!Name.errors.required">
+                    Name is required.
+                </div>
+
+                <div *ngIf="Name.errors.pattern">
+                    Name accept only characters.
+                </div>
+
+            </div>
+        </div>
+        <!-- email-->
+        <div class="form-group">
+            <label class="labels " for="Email">E-mail:</label>
+            <input type="email" id="Email" placeholder="example@example.com" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ngModel="{{profile.Email}}" name="Email" class="form-control" #Email="ngModel">
+
+            <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="alert alert-info">
+                <div [hidden]="!Email.errors.required">
+                    E-mail is required field.
+                </div>
+
+                <div *ngIf="Email.errors.pattern">
+                    Invalid E-mail, Please enter a valid one.
+                </div>
+
+            </div>
+        </div>
+        <!-- mobile number -->
+        <div class="form-group">
+            <label class="labels " for="Mobile">Mobile Number</label>
+            <input type="text" id="Mobile" placeholder="01234567890" required maxlength="11" pattern="(01)[0-9]{9}" ngModel="{{profile.Mobile}}" name="Mobile" class="form-control" #Mobile="ngModel">
+
+            <div *ngIf="Mobile.errors && (Mobile.dirty || Mobile.touched)" class="alert alert-info">
+                <div [hidden]="!Mobile.errors.required">
+                    Mobile number is required field.
+                </div>
+                <div *ngIf="Mobile.errors.pattern">
+                    invalid.
+                </div>
+            </div>
+        </div>
+        <!-- national id -->
+        <div class="form-group">
+            <label class="labels " for="National_ID">NationalID</label>
+            <input type="text" id="National_ID" placeholder="National ID" required minlength="14" maxlength="14" ngModel="{{profile.National_ID}}" name="National_ID" class="form-control" #National_ID="ngModel">
+
+            <div *ngIf="National_ID.errors && (National_ID.dirty || National_ID.touched)" class="alert alert-info">
+                <div [hidden]="!National_ID.errors.required">
+                    NationalID is a required field.
+                </div>
+            </div>
+        </div>
+        <!--university -->
+        <div class="form-group">
+            <label class="labels " for="University">University</label>
+            <input type="text" id="University" placeholder="Enter Your University" required pattern="[a-zA-Z ]*" ngModel="{{profile.University}}" name="University" class="form-control" #University="ngModel">
+
+            <div *ngIf="University.errors && (University.dirty || University.touched)" class="alert alert-info">
+                <div [hidden]="!University.errors.required">
+                    University is a required field.
+                </div>
+                <div *ngIf="University.errors.pattern">
+                    invalid, you must enter characters only.
+                </div>
+            </div>
+        </div>
+        <!-- faculty -->
+        <div class="form-group">
+            <label class="labels " for="Faculty">Faculty</label>
+            <input type="text" id="Faculty" placeholder="Enter Your Faculty" required pattern="[a-zA-Z ]*" ngModel="{{profile.Faculty}}" name="Faculty" class="form-control" #Faculty="ngModel">
+
+            <div *ngIf="Faculty.errors && (Faculty.dirty || Faculty.touched)" class="alert alert-info">
+                <div [hidden]="!Faculty.errors.required">
+                    Faculty is a required field.
+                </div>
+                <div *ngIf="Faculty.errors.pattern">
+                    invalid, you must enter characters only.
+                </div>
+            </div>
+        </div>
+        <!--major -->
+        <div class="form-group">
+            <label class="labels " for="Major">Major</label>
+            <input type="text" id="Major" placeholder="major" required pattern="[a-zA-Z ]*" ngModel="{{profile.Major}}" name="Major" class="form-control" #Major="ngModel">
+
+            <div *ngIf="Major.errors && (Major.dirty || Major.touched)" class="alert alert-info">
+                <div [hidden]="!Major.errors.required">
+                    Major is a required field.
+                </div>
+                <div *ngIf="Major.errors.pattern">
+                    invalid, you must enter characters only.
+                </div>
+            </div>
+
+        </div>
+        <!-- year-->
+        <div class="form-group">
+            <label class="labels " for="Expected_GraduationYear">Expected Graduation Year</label>
+            <input type="text" id="Expected_GraduationYear" placeholder="2018" required maxlength="4" pattern="(201[7-9]|202[0-9])" ngModel="{{profile.Expected_GraduationYear}}" name="Expected_GraduationYear" class="form-control" #Expected_GraduationYear="ngModel">
+
+            <div *ngIf="Expected_GraduationYear.errors && (Expected_GraduationYear.dirty || Expected_GraduationYear.touched)" class="alert alert-info">
+                <div [hidden]="!Expected_GraduationYear.errors.required">
+                    Graduation Year is a required field.
+                </div>
+                <div *ngIf="Expected_GraduationYear.errors.pattern">
+                    Invalid Year.
+                </div>
+
+            </div>
+        </div>
+        <!--profile picture-->
+        <div class="form-group">
+            <img src="{{profile.ProfilePicture}}" style="width:200px; height:200px;" alt="Image">
+            <label class="labels " for="ProfilePicture">Profile Picture <span>size < 500 KB</span></label>
+            <br>
+            <input type="file" name="ProfilePicture" class="form-control" accept="image/*" (change)="changeListener($event)">
+            <div *ngIf="profileEmpty" class="alert alert-info">
+                Upload a Photo.
+            </div>
+            <div *ngIf="profileSize" class="alert alert-info">
+                Size > 510 kB.
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!f.valid">Submit</button>
+        </div>
+    </form>
+</div>

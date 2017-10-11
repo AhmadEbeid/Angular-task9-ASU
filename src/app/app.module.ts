@@ -24,9 +24,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpModule,
     FormsModule,
     RouterModule.forRoot([ 
-      {path:'',component: NavbarComponent},// empty string: defult url 
+      {path:'',component: DatabaseInfoComponent},// empty string: defult url 
       {path:'Home',component:ProfileInputComponent},
-       {path:'DataBase',component: DatabaseInfoComponent }
+      {path:'DataBase',component: DatabaseInfoComponent },
+      { path: 'profile-details/:id', component: ProfileIdinfoComponent }
       ]) 
   ],
   providers: [ServerConnectionsService],

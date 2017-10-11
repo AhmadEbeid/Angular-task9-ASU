@@ -1,40 +1,27 @@
 <div class="container">
 
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>National_ID</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let person of profile; let i = index">
-        <th scope="row">{{person.id}}</th>
-        <td>{{person.name}}</td>
-        <td>{{person.email}}</td>
-        <td>{{person.nationalID}}</td>
-        <td><button type="button" (click)="clickMe(person.id)" name="button"></button></td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>National_ID</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of profile; let i = index">
+                <th scope="row">{{person.id}}</th>
+                <td>{{person.Name}}</td>
+                <td>{{person.Email}}</td>
+                <td>{{person.National_ID}}</td>
+                <td><a [routerLink]="['/profile-details', person.id]">Details</a></td>
+            </tr>
+        </tbody>
+    </table>
 
-  <button type="button" (click)="refresh()" class="btn btn-secondary btn-lg btn-block">Refresh</button>
-
-  <form *ngIf="infoFlagClickMe" id="InputForm" (ngSubmit)="submitMe(f, id)" #f="ngForm" >
-    <div class="form-group">
-      <label for="Name">Name</label>
-      <input type="text" #name="ngModel" class="form-control form-control-sm" id="Name" required name="name" ngModel="{{profile[id-1].name}}">
-      <button type="submit" [disabled]="!f.valid" class="btn btn-primary btn-lg btn-block">Submit</button>
-    </div>
-  </form>
-
-
-
-
-
+    <button type="button" (click)="refresh()" class="btn btn-secondary btn-lg btn-block">Refresh</button>
 
 
 </div>
