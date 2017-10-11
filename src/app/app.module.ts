@@ -26,7 +26,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     RouterModule.forRoot([ 
       {path:'',component: NavbarComponent},// empty string: defult url 
       {path:'Home',component:ProfileInputComponent},
-       {path:'DataBase',component: ProfileIdinfoComponent }
+       {path:'DataBase',component: DatabaseInfoComponent }
       ]) 
   ],
   providers: [ServerConnectionsService],
