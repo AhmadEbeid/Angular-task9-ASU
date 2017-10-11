@@ -15,15 +15,39 @@ export class ProfileInputComponent implements OnInit {
 
   constructor(private server:ServerConnectionsService) { }
 
-  ngOnInit() {
-  }
 
   UserInfoJson;
   image;
   inputValue;
-  
+  profile = [];
+  emailExists = 0;
+  mobileExists = 0;
+  nationalIDExists = 0;
+
+
+  ngOnInit() {
+    this.server.getData().subscribe((res) => {
+      console.log(res)
+      for(let i = 0; i < res.length; i++){
+        this.profile[i] = res[i];
+        //console.log(this.profile)
+      }
+    });
+  }
+
   submitMe(UserInfoJson){
     this.UserInfoJson = UserInfoJson.value;
+
+    for(let i = 0; i < this.profile.length; i++){
+      
+      this.emailExists = ((this.profile[i].Email == this.UserInfoJson.Email) ? 1 : 0);
+      this.mobileExists = ((this.profile[i].Mobile == this.UserInfoJson.Mobile) ? 1 : 0);
+      this.nationalIDExists = ((this.profile[i].National_ID == this.UserInfoJson.National_ID) ? 1 : 0);
+      
+      if(this.nationalIDExists || this.emailExists || this.mobileExists){
+        return;
+      }
+    }
 
     if(this.profileEmpty == 0){
       this.readThis(this.inputValue);

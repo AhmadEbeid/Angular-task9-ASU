@@ -137,7 +137,17 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <div *ngIf="emailExists" class="alert alert-danger">
+                        Email Exists, please login or change your Email
+                    </div>
+                    <div *ngIf="mobileExists" class="alert alert-danger">
+                        Mobile Exists, please login.
+                    </div>
+                    <div *ngIf="nationalIDExists" class="alert alert-danger">
+                        National ID Exists, please login.
+                    </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!f.valid">Submit</button>
+
                 </div>
             </form>
         </div>
