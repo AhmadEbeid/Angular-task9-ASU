@@ -35,6 +35,8 @@ export class ProfileInputComponent implements OnInit {
     });
   }
 
+  //<input type="file" name="ProfilePicture" class="form-control" accept="image/*" (change)="changeListener($event)">
+
   submitMe(UserInfoJson){
     this.UserInfoJson = UserInfoJson.value;
 
@@ -81,4 +83,9 @@ export class ProfileInputComponent implements OnInit {
    
   }
 
+
+
+
 }
+
+
